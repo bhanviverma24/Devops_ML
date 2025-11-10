@@ -19,14 +19,17 @@ y = pd.Series(iris.target)
 # Sidebar: User input
 st.sidebar.header("Input Features")
 def user_input_features():
-    sepal_length = st.sidebar.slider("Sepal length (cm)", float(X.sepal length.min()), float(X.sepal length.max()), float(X.sepal length.mean()))
-    sepal_width = st.sidebar.slider("Sepal width (cm)", float(X.sepal width.min()), float(X.sepal width.max()), float(X.sepal width.mean()))
-    petal_length = st.sidebar.slider("Petal length (cm)", float(X.petal length.min()), float(X.petal length.max()), float(X.petal length.mean()))
-    petal_width = st.sidebar.slider("Petal width (cm)", float(X.petal width.min()), float(X.petal width.max()), float(X.petal width.mean()))
-    data = {'sepal length (cm)': sepal_length,
-            'sepal width (cm)': sepal_width,
-            'petal length (cm)': petal_length,
-            'petal width (cm)': petal_width}
+    sepal_length = st.sidebar.slider("Sepal length (cm)", float(X['sepal length (cm)'].min()), float(X['sepal length (cm)'].max()), float(X['sepal length (cm)'].mean()))
+    sepal_width = st.sidebar.slider("Sepal width (cm)", float(X['sepal width (cm)'].min()), float(X['sepal width (cm)'].max()), float(X['sepal width (cm)'].mean()))
+    petal_length = st.sidebar.slider("Petal length (cm)", float(X['petal length (cm)'].min()), float(X['petal length (cm)'].max()), float(X['petal length (cm)'].mean()))
+    petal_width = st.sidebar.slider("Petal width (cm)", float(X['petal width (cm)'].min()), float(X['petal width (cm)'].max()), float(X['petal width (cm)'].mean()))
+    
+    data = {
+        'sepal length (cm)': sepal_length,
+        'sepal width (cm)': sepal_width,
+        'petal length (cm)': petal_length,
+        'petal width (cm)': petal_width
+    }
     features = pd.DataFrame(data, index=[0])
     return features
 
@@ -61,3 +64,4 @@ st.write(X.head())
 st.subheader("Pairplot of Iris Dataset")
 sns.pairplot(pd.concat([X, pd.Series(y, name='species')], axis=1), hue='species')
 st.pyplot(plt.gcf())
+
