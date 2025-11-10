@@ -1,12 +1,10 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, confusion_matrix
 
 # Title
 st.title("Lightweight ML Dashboard - Iris Species Prediction")
@@ -62,6 +60,6 @@ st.subheader("Iris Dataset Overview")
 st.write(X.head())
 
 st.subheader("Pairplot of Iris Dataset")
-sns.pairplot(pd.concat([X, pd.Series(y, name='species')], axis=1), hue='species')
-st.pyplot(plt.gcf())
-
+fig = sns.pairplot(pd.concat([X, pd.Series(y, name='species')], axis=1), hue='species')
+st.pyplot(fig)
+plt.close()  # Close figure to avoid warnings
